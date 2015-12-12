@@ -1,6 +1,6 @@
 {
   "name": "holiday-js-lyricall",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "description": "",
   "main": "index.js",
   "scripts": {
@@ -9,6 +9,7 @@
   "author": "virgilvox <moheeb.zara@citrix.com> (http://app.octoblu.com/)",
   "license": "ISC",
   "dependencies": {
+    "blather": "^1.0.4",
     "lyrics-fetcher": "^1.0.1",
     "markovchain": "^1.0.0",
     "musicmatch": "^0.2.5"

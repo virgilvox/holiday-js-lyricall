@@ -1,5 +1,11 @@
-var MarkovChain = require('markovchain')
-  , fs = require('fs')
-  , quotes = new MarkovChain(fs.readFileSync('./test.txt'))
+ var Blather = require('blather');
+ var lyr = require('lyrics-fetcher');
 
-console.log(quotes.start('The').end(5).process())
+ lyr.fetch('Drake', 'hotline bling', function (err, lyrics) {
+   var blatherer = new Blather()
+
+   blatherer.addText(lyrics)
+
+   blatherer.sentence()
+
+ });
