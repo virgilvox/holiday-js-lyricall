@@ -1,10 +1,11 @@
 var AlchemyAPI = require('alchemy-api');
-var alchemy = new AlchemyAPI('226659f4aa74186689f370af15c9d8c2f8464e24');
 var Blather = require('blather');
 var lyr = require('lyrics-fetcher');
 
 
-function lyriCall(){
+function lyriCall(api-key){
+
+var alchemy = new AlchemyAPI(api-key);
 
 var blatherer = new Blather()
 
