@@ -21,3 +21,19 @@ lc.getLyrics('Drake', 'hotline bling', function(song){
   });
 });
 ```
+
+### Available functions
+
+```
+lc.AlchRelations(words, callback)
+lc.AlchTaxonomy(words, callback)
+lc.AlchConcepts(words, callback)
+lc.AlchKeywords(words, callback)
+lc.AlchSentiment(words, callback)
+lc.AlchCategory(words, callback)
+
+lc.getLyrics(artist, song, callback)
+lc.AddToChain(words) <- adds to markov chain generator
+lc.GenerateSentence() <- returns markov chain
+
+```
