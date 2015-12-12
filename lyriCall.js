@@ -3,22 +3,23 @@ var alchemy = new AlchemyAPI('226659f4aa74186689f370af15c9d8c2f8464e24');
 var Blather = require('blather');
 var lyr = require('lyrics-fetcher');
 
-lyr.fetch('Drake', 'hotline bling', function (err, lyrics) {
-  var blatherer = new Blather()
-
-  blatherer.addText(lyrics)
-
-  blatherer.addText(words)
-
-  console.log(blatherer.sentence());
-
-});
-
 
 function lyriCall(){
 
-lyriCall.prototype.getLyrics = function(){
+var blatherer = new Blather()
 
+lyriCall.prototype.getLyrics = function(artist, song, callback){
+  lyr.fetch(artist, song, function (err, lyrics) {
+    callback(lyrics);
+  });
+};
+
+lyriCall.prototype.AddToChain = function(text){
+  blatherer.addText(text);
+};
+
+lyriCall.prototype.GenerateSentence = function(){
+  return blatherer.sentence();
 };
 
 lyriCall.prototype.AlchSentiment = function(words, callback){
