@@ -1,5 +1,9 @@
-var lyr = require('lyrics-fetcher');
+var LyriCall = require('./lyriCall.js');
 
-lyr.fetch('Drake', 'hotline bling', function (err, lyrics) {
-    console.log(err || lyrics);
+var lc = new LyriCall.lyriCall();
+
+lc.getLyrics('Drake', 'hotline bling', function(song){
+  lc.AlchRelations(song, function(relations){
+    console.log(relations);
+  });
 });

@@ -1,21 +1,8 @@
- var Blather = require('blather');
- var lyr = require('lyrics-fetcher');
- var fs = require('fs');
+var LyriCall = require('./lyriCall.js');
 
-require.extensions['.txt'] = function (module, filename) {
-    module.exports = fs.readFileSync(filename, 'utf8');
-};
+var lc = new LyriCall.lyriCall();
 
-var words = require("./test.txt");
-
-
- lyr.fetch('Drake', 'hotline bling', function (err, lyrics) {
-   var blatherer = new Blather()
-
-   blatherer.addText(lyrics)
-
-   blatherer.addText(words)
-
-   console.log(blatherer.sentence());
-
- });
+lc.getLyrics('Drake', 'hotline bling', function(song){
+  lc.AddToChain(song);
+  console.log(lc.GenerateSentence());
+});
