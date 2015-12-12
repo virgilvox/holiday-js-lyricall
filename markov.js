@@ -6,6 +6,6 @@
 
    blatherer.addText(lyrics)
 
-   blatherer.sentence()
+   console.log(blatherer.sentence());
 
  });
