@@ -6,47 +6,74 @@ require.extensions['.txt'] = function (module, filename) {
    module.exports = fs.readFileSync(filename, 'utf8');
 };
 
-var words = require("./test.txt");
-var sentiment, entities, concepts, taxonomies, relations, keywords, category;
+var song = require("./test.txt");
 
-alchemy.sentiment(words, {}, function(err, response) {
-  if (err) throw err;
-  sentiment = response.docSentiment;
-  console.log("SENTIMENT:", sentiment);
-});
+var AlchSentiment = function(words, callback){
+  alchemy.sentiment(words, {}, function(err, response) {
+    if (err) throw err;
+    callback(response.docSentiment);
+  });
+};
 
-alchemy.entities(words, {}, function(err, response) {
-  if (err) throw err;
-  entities = response.entities;
-  console.log("ENTITIES", entities);
-});
+var AlchRelations = function(words, callback) {
+  alchemy.relations(words, {}, function(err, response) {
+    if (err) throw err;
+    callback(response.relations);
+  });
+};
 
-alchemy.relations(words, {}, function(err, response) {
-  if (err) throw err;
-  relations = response.relations;
-  console.log("RELATIONS", relations);
-});
+var AlchConcepts = function(words, callback) {
+  alchemy.concepts(words, {}, function(err, response) {
+    if (err) throw err;
+    return response.concepts;
+  });
+};
 
-alchemy.concepts(words, {}, function(err, response) {
-  if (err) throw err;
-  concepts = response.concepts;
-  console.log("CONCEPTS", concepts);
-});
+var AlchKeywords = function(words, callback) {
+  alchemy.keywords(words, {}, function(err, response) {
+    if (err) throw err;
+    callback(response.keywords);
+  });
+};
 
-alchemy.keywords(words, {}, function(err, response) {
-  if (err) throw err;
-  keywords = response.keywords;
-  console.log("KEYWORDS", keywords);
-});
+var AlchTaxonomy = function(words, callback) {
+  alchemy.taxonomies(words, {}, function(err, response) {
+    if (err) throw err;
+    callback(response.taxonomies);
+  });
+};
 
-alchemy.taxonomies(words, {}, function(err, response) {
-  if (err) throw err;
-  taxonomies = response.taxonomies;
-  console.log("TAXONOMY", taxonomies);
-});
+var AlchCategory = function(words, callback) {
+  alchemy.category(words, {}, function(err, response) {
+    if (err) throw err;
+    callback(response.category);
+  });
+};
 
-alchemy.category(words, {}, function(err, response) {
-  if (err) throw err;
-  category = response.category;
-  console.log("TOPIC CATEGORIZATION", category);
-});
+var AlchAll = function(words){
+  AlchKeywords(words, function(res){
+    console.log("Keywords",res);
+  });
+
+  AlchConcepts(words, function(res){
+    console.log("Concepts",res);
+  });
+
+  AlchSentiment(words, function(res){
+    console.log("Sentiment",res);
+  });
+
+  AlchRelations(words, function(res){
+    console.log("Relations",res);
+  });
+
+  AlchCategory(words, function(res){
+    console.log("Category",res);
+  });
+
+  AlchTaxonomy(words, function(res){
+    console.log("Taxonomy",res);
+  });
+};
+
+AlchAll(song);
