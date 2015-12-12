@@ -1,14 +1,25 @@
 var AlchemyAPI = require('alchemy-api');
 var alchemy = new AlchemyAPI('226659f4aa74186689f370af15c9d8c2f8464e24');
-var fs = require('fs');
+var Blather = require('blather');
+var lyr = require('lyrics-fetcher');
 
-require.extensions['.txt'] = function (module, filename) {
-   module.exports = fs.readFileSync(filename, 'utf8');
-};
+lyr.fetch('Drake', 'hotline bling', function (err, lyrics) {
+  var blatherer = new Blather()
 
-var song = require("./test.txt");
+  blatherer.addText(lyrics)
+
+  blatherer.addText(words)
+
+  console.log(blatherer.sentence());
+
+});
+
 
 function lyriCall(){
+
+lyriCall.prototype.getLyrics = function(){
+
+};
 
 lyriCall.prototype.AlchSentiment = function(words, callback){
   alchemy.sentiment(words, {}, function(err, response) {
@@ -80,6 +91,5 @@ lyriCall.prototype.AlchAll = function(words){
 
 };
 
-AlchAll(song);
 
 exports.lyriCall = lyriCall;
