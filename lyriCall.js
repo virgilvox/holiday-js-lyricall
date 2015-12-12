@@ -3,9 +3,9 @@ var Blather = require('blather');
 var lyr = require('lyrics-fetcher');
 
 
-function lyriCall(api-key){
+function lyriCall(apikey){
 
-var alchemy = new AlchemyAPI(api-key);
+var alchemy = new AlchemyAPI(apikey);
 
 var blatherer = new Blather()
 
@@ -66,27 +66,27 @@ lyriCall.prototype.AlchCategory = function(words, callback) {
 };
 
 lyriCall.prototype.AlchAll = function(words){
-  AlchKeywords(words, function(res){
+  this.AlchKeywords(words, function(res){
     console.log("Keywords",res);
   });
 
-  AlchConcepts(words, function(res){
+  this.AlchConcepts(words, function(res){
     console.log("Concepts",res);
   });
 
-  AlchSentiment(words, function(res){
+  this.AlchSentiment(words, function(res){
     console.log("Sentiment",res);
   });
 
-  AlchRelations(words, function(res){
+  this.AlchRelations(words, function(res){
     console.log("Relations",res);
   });
 
-  AlchCategory(words, function(res){
+  this.AlchCategory(words, function(res){
     console.log("Category",res);
   });
 
-  AlchTaxonomy(words, function(res){
+  this.AlchTaxonomy(words, function(res){
     console.log("Taxonomy",res);
   });
 };
